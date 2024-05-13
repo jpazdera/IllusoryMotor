@@ -1,6 +1,8 @@
 # IllusoryMotor
 
-Data and code for: Pazdera &amp; Trainor (2024). Pitch exerts a U-shaped effect on sensorimotor timing. _PsyArXiv_. 
+Data and code for: 
+
+Pazdera &amp; Trainor (2024). Pitch exerts a U-shaped effect on sensorimotor timing. _PsyArXiv_. 
 
 Full documentation coming at publication!
 
