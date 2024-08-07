@@ -2,7 +2,7 @@
 
 Data and code for: 
 
-Pazdera &amp; Trainor (2024). Pitch exerts a U-shaped effect on sensorimotor timing. _PsyArXiv_. https://osf.io/preprints/psyarxiv/fbmw5
+Pazdera &amp; Trainor (2024). Pitch biases sensorimotor synchronization to auditory rhythms. _PsyArXiv_. https://osf.io/preprints/psyarxiv/fbmw5
 
 Full documentation coming at publication!
 
