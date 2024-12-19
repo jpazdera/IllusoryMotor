@@ -3,7 +3,7 @@ library(lme4)  # For linear mixed effects modeling
 library(lmerTest)  # For F testing of LMER models
 library(car)  # For qqPlot
 options(contrasts=c("contr.sum","contr.poly"))
-setwd("~/git/IllusoryMotor/analysis/")
+setwd("~/Documents/git/IllusoryMotor/analysis/")
 
 ### DATA PREPARATION ###
 
@@ -32,7 +32,7 @@ subj_cavgs <- group_by(cdata, subject, register, pitch, ioi) %>%
 # ioi * pitch (n.s.): Pitch had similar effect regardless of tempo
 # hearing_threshold (n.s.): Asynchrony was not correlated with hearing threshold
 model <- lmer(perc_async ~ 1 + ioi * poly(pitch, 2) + hearing_threshold + (1 + ioi | subject),
-              data=subj_savgs[subj_savgs$register == 'B',], REML=FALSE)
+              data=sdata[sdata$register == 'B',], REML=FALSE)
 # Normality of residuals: Okay, but a little skewed - probably related to people anticipating the tone, which makes the positive tail extend less far
 qqPlot(residuals(model))
 hist(residuals(model))
@@ -40,24 +40,24 @@ hist(residuals(model))
 plot(fitted(model), residuals(model), xlab="Fitted Values", ylab="Residuals")
 # Type III Analysis of Variance Table with Satterthwaite's method
 #                    Sum Sq Mean Sq NumDF  DenDF F value    Pr(>F)
-# ioi                  2.09   2.091     1  38.00  0.3474    0.5591
-# poly(pitch, 2)     426.98 213.489     2 381.48 35.4754 7.411e-15 ***
-# hearing_threshold    9.70   9.701     1 391.32  1.6121    0.2050
-# ioi:poly(pitch, 2)  14.16   7.080     2 379.98  1.1765    0.3095
+# ioi                  1.13   1.134     1  39.00  0.1909    0.6646
+# poly(pitch, 2)     432.64 216.322     2 391.51 36.4077 3.152e-15 ***
+# hearing_threshold    8.50   8.502     1 401.41  1.4309    0.2323
+# ioi:poly(pitch, 2)  11.91   5.954     2 389.95  1.0021    0.3680
 anova(model)
 # Fixed effects:
 # Estimate Std. Error        df t value Pr(>|t|)
-# (Intercept)          -13.48922    0.79700  38.07399 -16.925  < 2e-16 ***
-# ioi1                  -0.20754    0.35210  37.99990  -0.589    0.559
-# poly(pitch, 2)1        1.55789    2.83473 382.96192   0.550    0.583
-# poly(pitch, 2)2       20.61635    2.46154 380.05728   8.375 1.07e-15 ***
-# hearing_threshold      0.03606    0.02840 391.31720   1.270    0.205
-# ioi1:poly(pitch, 2)1  -3.64822    2.45315 379.97515  -1.487    0.138
-# ioi1:poly(pitch, 2)2  -0.92232    2.45315 379.97515  -0.376    0.707
+# (Intercept)          -13.76437    0.82356  39.06428 -16.713  < 2e-16 ***
+# ioi1                  -0.15182    0.34745  38.99996  -0.437    0.665
+# poly(pitch, 2)1        1.70248    2.83038 393.04723   0.602    0.548
+# poly(pitch, 2)2       20.73348    2.44332 390.00272   8.486 4.52e-16 ***
+# hearing_threshold      0.03346    0.02797 401.41112   1.196    0.232
+# ioi1:poly(pitch, 2)1  -3.24008    2.43755 389.94522  -1.329    0.185
+# ioi1:poly(pitch, 2)2  -1.18772    2.43755 389.94522  -0.487    0.626
 summary(model)
 
 # EXPERIMENT 2 (LOWER)
-# ioi (*): Participants tapped later when synchronizing to 600 ms stimuli
+# ioi (n.s.): Different tempos gave similar percent asynchronies
 # pitch (***): Stronger negative linear + weaker positive quadratic effect - higher pitches produce earlier tapping
 # ioi * pitch (n.s.): Pitch had similar effect regardless of tempo
 # hearing_threshold (n.s.): Asynchrony was not correlated with hearing threshold
@@ -69,30 +69,30 @@ hist(residuals(model))
 # Homoscedasticity: Good
 plot(fitted(model), residuals(model), xlab="Fitted Values", ylab="Residuals")
 # Type III Analysis of Variance Table with Satterthwaite's method
-#                     Sum Sq Mean Sq NumDF  DenDF F value    Pr(>F)
-# ioi                 20.281  20.281     1  22.00  5.2353   0.03211 *
-# poly(pitch, 2)     159.055  79.527     2 220.70 20.5289 6.658e-09 ***
-# hearing_threshold    1.791   1.791     1 229.41  0.4622   0.49727
-# ioi:poly(pitch, 2)   3.889   1.945     2 219.94  0.5020   0.60601
+#                    Sum Sq Mean Sq NumDF  DenDF F value    Pr(>F)
+# ioi                  1.395   1.395     1  24.00  0.2930    0.5933
+# poly(pitch, 2)     189.883  94.942     2 240.62 19.9438 9.679e-09 ***
+# hearing_threshold    2.338   2.338     1 248.97  0.4910    0.4841
+# ioi:poly(pitch, 2)   1.500   0.750     2 239.81  0.1575    0.8543
 anova(model)
 # Fixed effects:
 # Estimate Std. Error        df t value Pr(>|t|)
-# (Intercept)          -12.89513    1.01601  22.00572 -12.692 1.34e-11 ***
-# ioi1                  -1.00013    0.43710  22.00003  -2.288  0.03211 *
-# poly(pitch, 2)1      -12.31028    2.13035 221.45114  -5.779 2.54e-08 ***
-# poly(pitch, 2)2        5.57249    1.96899 219.94935   2.830  0.00508 **
-# hearing_threshold      0.02927    0.04305 229.41411   0.680  0.49727
-# ioi1:poly(pitch, 2)1  -0.87380    1.96823 219.94129  -0.444  0.65751
-# ioi1:poly(pitch, 2)2   1.76800    1.96823 219.94129   0.898  0.37002
+# (Intercept)          -14.44541    1.40765  23.93713 -10.262 3.04e-10 ***
+# ioi1                  -0.32875    0.60734  24.00002  -0.541   0.5933
+# poly(pitch, 2)1      -14.02875    2.38366 241.40407  -5.885 1.32e-08 ***
+# poly(pitch, 2)2        5.32998    2.18609 239.84881   2.438   0.0155 *
+# hearing_threshold      0.03212    0.04584 248.96803   0.701   0.4841
+# ioi1:poly(pitch, 2)1  -1.08978    2.18185 239.81022  -0.499   0.6179
+# ioi1:poly(pitch, 2)2   0.55867    2.18185 239.81022   0.256   0.7981
 summary(model)
 
 # EXPERIMENT 2 (UPPER)
-# ioi (n.s.): Different tempos give similar tap phases/percent asynchronies
+# ioi (n.s.): Different tempos give similar percent asynchronies
 # pitch (***): Stronger positive linear + weaker positive quadratic effect - higher pitches produce later tapping
 # ioi * pitch (n.s.): Pitch has similar effect regardless of tempo
 # hearing_threshold (**): Later tapping for pitches the participant was less sensitive to hearing
 model <- lmer(perc_async ~ 1 + ioi * poly(pitch, 2) + hearing_threshold + (1 + ioi | subject),
-              data=subj_savgs[subj_savgs$register == 'U',], REML=FALSE)
+              data=sdata[sdata$register == 'U',], REML=FALSE)
 # Normality of residuals: Okay - kurtosis is a little high, not skewed
 qqPlot(residuals(model))
 hist(residuals(model))
@@ -134,27 +134,27 @@ hist(residuals(model))
 plot(fitted(model), residuals(model), xlab="Fitted Values", ylab="Residuals")
 # Type III Analysis of Variance Table with Satterthwaite's method
 #                       Sum Sq   Mean Sq NumDF  DenDF F value    Pr(>F)
-# ioi                0.0083983 0.0083983     1  38.00 45.1585 5.898e-08 ***
-# poly(pitch, 2)     0.0021537 0.0010769     2 381.34  5.7904  0.003332 **
-# hearing_threshold  0.0004120 0.0004120     1 390.09  2.2151  0.137473
-# ioi:poly(pitch, 2) 0.0000364 0.0000182     2 380.00  0.0980  0.906709
+# ioi                0.0091344 0.0091344     1  39.00 48.5109 2.394e-08 ***
+# poly(pitch, 2)     0.0023602 0.0011801     2 391.55  6.2672  0.002093 **
+# hearing_threshold  0.0004373 0.0004373     1 401.39  2.3225  0.128305
+# ioi:poly(pitch, 2) 0.0000589 0.0000295     2 390.00  0.1565  0.855161
 anova(model)
 # Fixed effects:
 # Estimate Std. Error         df t value Pr(>|t|)
-# (Intercept)           9.650e-01  5.505e-03  3.807e+01 175.284  < 2e-16 ***
-# ioi1                  2.095e-02  3.117e-03  3.800e+01   6.720  5.9e-08 ***
-# poly(pitch, 2)1       1.066e-03  1.576e-02  3.826e+02   0.068 0.946134
-# poly(pitch, 2)2       4.648e-02  1.368e-02  3.801e+02   3.397 0.000754 ***
-# hearing_threshold     2.352e-04  1.580e-04  3.901e+02   1.488 0.137473
-# ioi1:poly(pitch, 2)1 -3.207e-03  1.364e-02  3.800e+02  -0.235 0.814236
-# ioi1:poly(pitch, 2)2  5.114e-03  1.364e-02  3.800e+02   0.375 0.707862
+# (Intercept)           9.643e-01  5.402e-03  3.909e+01 178.527  < 2e-16 ***
+# ioi1                  2.127e-02  3.054e-03  3.900e+01   6.965 2.39e-08 ***
+# poly(pitch, 2)1       2.611e-03  1.593e-02  3.931e+02   0.164 0.869937
+# poly(pitch, 2)2       4.854e-02  1.375e-02  3.901e+02   3.529 0.000467 ***
+# hearing_threshold     2.400e-04  1.575e-04  4.014e+02   1.524 0.128305
+# ioi1:poly(pitch, 2)1 -7.094e-03  1.372e-02  3.900e+02  -0.517 0.605448
+# ioi1:poly(pitch, 2)2  2.936e-03  1.372e-02  3.900e+02   0.214 0.830712
 summary(model)
 
 # EXPERIMENT 2 (LOWER)
 # ioi (***): Tapped faster relative to the 600 ms stimulus than to the 400 ms one
 # pitch (**): Negative linear effect - faster tapping to higher pitches
 # ioi * pitch (n.s.): Negative linear effect was stronger in the 400 ms condition, but not significantly
-# hearing_threshold (***): Faster tapping for pitches the participant was less sensitive to hearing
+# hearing_threshold (**): Faster tapping for pitches the participant was less sensitive to hearing
 model <- lmer(rel_iti ~ 1 + ioi * poly(pitch, 2) + hearing_threshold + (1 + ioi | subject),
               data=subj_cavgs[subj_cavgs$register == 'L',], REML=FALSE)
 # Normality of residuals: Good
@@ -163,21 +163,21 @@ hist(residuals(model))
 # Homoscedasticity: Good
 plot(fitted(model), residuals(model), xlab="Fitted Values", ylab="Residuals")
 # Type III Analysis of Variance Table with Satterthwaite's method
-#                        Sum Sq    Mean Sq NumDF  DenDF F value    Pr(>F)
-# ioi                0.00232486 0.00232486     1  22.00 20.9952 0.0001456 ***
-# poly(pitch, 2)     0.00113153 0.00056577     2 220.53  5.1093 0.0067755 **
-# hearing_threshold  0.00138288 0.00138288     1 226.76 12.4885 0.0004962 ***
-# ioi:poly(pitch, 2) 0.00043035 0.00021518     2 220.00  1.9432 0.1456948
+#                        Sum Sq    Mean Sq NumDF   DenDF F value    Pr(>F)
+# ioi                0.00217894 0.00217894     1  24.001 18.8198 0.0002235 ***
+# poly(pitch, 2)     0.00158278 0.00079139     2 240.607  6.8354 0.0012963 **
+# hearing_threshold  0.00086099 0.00086099     1 247.558  7.4365 0.0068488 **
+# ioi:poly(pitch, 2) 0.00058220 0.00029110     2 239.942  2.5143 0.0830515 .
 anova(model)
 # Fixed effects:
 # Estimate Std. Error         df t value Pr(>|t|)
-# (Intercept)           9.689e-01  6.463e-03  2.206e+01 149.902  < 2e-16 ***
-# ioi1                  1.434e-02  3.130e-03  2.200e+01   4.582 0.000146 ***
-# poly(pitch, 2)1      -3.567e-02  1.140e-02  2.211e+02  -3.130 0.001986 **
-# poly(pitch, 2)2       7.207e-03  1.053e-02  2.200e+02   0.685 0.494291
-# hearing_threshold    -8.164e-04  2.310e-04  2.268e+02  -3.534 0.000496 ***
-# ioi1:poly(pitch, 2)1 -1.985e-02  1.052e-02  2.200e+02  -1.886 0.060546 .
-# ioi1:poly(pitch, 2)2  6.023e-03  1.052e-02  2.200e+02   0.572 0.567679
+# (Intercept)           9.630e-01  7.506e-03  2.402e+01 128.294  < 2e-16 ***
+# ioi1                  1.677e-02  3.867e-03  2.400e+01   4.338 0.000224 ***
+# poly(pitch, 2)1      -4.022e-02  1.176e-02  2.413e+02  -3.420 0.000735 ***
+# poly(pitch, 2)2       1.607e-02  1.078e-02  2.400e+02   1.490 0.137467
+# hearing_threshold    -6.177e-04  2.265e-04  2.476e+02  -2.727 0.006849 **
+# ioi1:poly(pitch, 2)1 -2.362e-02  1.076e-02  2.399e+02  -2.195 0.029110 *
+# ioi1:poly(pitch, 2)2  4.929e-03  1.076e-02  2.399e+02   0.458 0.647319
 summary(model)
 
 # EXPERIMENT 2 (UPPER)
