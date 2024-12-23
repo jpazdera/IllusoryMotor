@@ -215,6 +215,27 @@ anova(model)
 summary(model)
 
 ###
+# Hearing Thresholds
+###
+subj_savgs2 <- group_by(sdata, subject, pitch) %>%
+  summarize(perc_async=mean(perc_async), hearing_threshold=mean(hearing_threshold))
+model <- lmer(perc_async ~ 1 + hearing_threshold + (1 | subject),
+              data=subj_savgs2, REML=FALSE)
+# Type III Analysis of Variance Table with Satterthwaite's method
+#                   Sum Sq Mean Sq NumDF  DenDF F value  Pr(>F)
+# hearing_threshold 25.281  25.281     1 446.66  6.3169 0.01231 *
+anova(model)
+
+subj_cavgs2 <- group_by(cdata, subject, pitch) %>%
+  summarize(rel_iti=mean(rel_iti), hearing_threshold=mean(hearing_threshold))
+model <- lmer(rel_iti ~ 1 + hearing_threshold + (1 | subject),
+              data=subj_cavgs2, REML=FALSE)
+# Type III Analysis of Variance Table with Satterthwaite's method
+#                       Sum Sq    Mean Sq NumDF  DenDF F value Pr(>F)
+# hearing_threshold 1.5782e-05 1.5782e-05     1 442.37  0.1862 0.6663
+anova(model)
+
+###
 # SUPPLEMENTAL
 ###
 
