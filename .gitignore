@@ -169,3 +169,4 @@ cython_debug/
 *.xml
 data/survey_data.csv
 .DS_Store
+processed_data/survey_data.csv
