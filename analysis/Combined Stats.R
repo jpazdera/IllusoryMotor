@@ -51,21 +51,21 @@ hist(residuals(model))
 # Homoscedasticity: Good
 plot(fitted(model), residuals(model), xlab="Fitted Values", ylab="Residuals")
 # Type III Analysis of Variance Table with Satterthwaite's method
-#                    Sum Sq Mean Sq NumDF  DenDF F value    Pr(>F)
-# ioi                  1.13   1.134     1  39.00  0.1909    0.6646
-# poly(pitch, 2)     432.64 216.322     2 391.51 36.4077 3.152e-15 ***
-# hearing_threshold    8.50   8.502     1 401.41  1.4309    0.2323
-# ioi:poly(pitch, 2)  11.91   5.954     2 389.95  1.0021    0.3680
+#                            Sum Sq Mean Sq NumDF DenDF F value    Pr(>F)
+# ioi                          1.13   1.134     1    39  0.1909    0.6646
+# poly(pitch, 2)             432.43 216.215     2   390 36.3923 3.226e-15 ***
+# hearing_threshold_centered  10.89  10.885     1   390  1.8322    0.1767
+# ioi:poly(pitch, 2)          11.91   5.954     2   390  1.0022    0.3680
 anova(model)
 # Fixed effects:
 # Estimate Std. Error        df t value Pr(>|t|)
-# (Intercept)          -13.76437    0.82356  39.06428 -16.713  < 2e-16 ***
-# ioi1                  -0.15182    0.34745  38.99996  -0.437    0.665
-# poly(pitch, 2)1        1.70248    2.83038 393.04723   0.602    0.548
-# poly(pitch, 2)2       20.73348    2.44332 390.00272   8.486 4.52e-16 ***
-# hearing_threshold      0.03346    0.02797 401.41112   1.196    0.232
-# ioi1:poly(pitch, 2)1  -3.24008    2.43755 389.94522  -1.329    0.185
-# ioi1:poly(pitch, 2)2  -1.18772    2.43755 389.94522  -0.487    0.626
+# (Intercept)                -13.72353    0.81840  39.00164 -16.769  < 2e-16 ***
+# ioi1                        -0.15182    0.34746  38.99792  -0.437    0.665
+# poly(pitch, 2)1              1.94416    2.83606 390.00021   0.686    0.493
+# poly(pitch, 2)2             20.70527    2.44333 390.00021   8.474 4.91e-16 ***
+# hearing_threshold_centered   0.03816    0.02819 390.00021   1.354    0.177
+# ioi1:poly(pitch, 2)1        -3.24008    2.43746 390.00021  -1.329    0.185
+# ioi1:poly(pitch, 2)2        -1.18772    2.43746 390.00021  -0.487    0.626
 summary(model)
 
 # EXPERIMENT 2 (LOWER)
@@ -81,21 +81,21 @@ hist(residuals(model))
 # Homoscedasticity: Good
 plot(fitted(model), residuals(model), xlab="Fitted Values", ylab="Residuals")
 # Type III Analysis of Variance Table with Satterthwaite's method
-#                    Sum Sq Mean Sq NumDF  DenDF F value    Pr(>F)
-# ioi                  1.395   1.395     1  24.00  0.2930    0.5933
-# poly(pitch, 2)     189.883  94.942     2 240.62 19.9438 9.679e-09 ***
-# hearing_threshold    2.338   2.338     1 248.97  0.4910    0.4841
-# ioi:poly(pitch, 2)   1.500   0.750     2 239.81  0.1575    0.8543
+#                             Sum Sq Mean Sq NumDF   DenDF F value    Pr(>F)
+# ioi                          1.394   1.394     1  24.001  0.2930    0.5933
+# poly(pitch, 2)             181.947  90.973     2 240.000 19.1178 1.976e-08 ***
+# hearing_threshold_centered   4.792   4.792     1 240.000  1.0071    0.3166
+# ioi:poly(pitch, 2)           1.500   0.750     2 240.000  0.1576    0.8543
 anova(model)
 # Fixed effects:
 # Estimate Std. Error        df t value Pr(>|t|)
-# (Intercept)          -14.44541    1.40765  23.93713 -10.262 3.04e-10 ***
-# ioi1                  -0.32875    0.60734  24.00002  -0.541   0.5933
-# poly(pitch, 2)1      -14.02875    2.38366 241.40407  -5.885 1.32e-08 ***
-# poly(pitch, 2)2        5.32998    2.18609 239.84881   2.438   0.0155 *
-# hearing_threshold      0.03212    0.04584 248.96803   0.701   0.4841
-# ioi1:poly(pitch, 2)1  -1.08978    2.18185 239.81022  -0.499   0.6179
-# ioi1:poly(pitch, 2)2   0.55867    2.18185 239.81022   0.256   0.7981
+# (Intercept)                -14.39794    1.39416  24.00053 -10.327 2.61e-10 ***
+# ioi1                        -0.32875    0.60733  24.00072  -0.541   0.5933
+# poly(pitch, 2)1            -13.72824    2.38724 239.99982  -5.751 2.69e-08 ***
+# poly(pitch, 2)2              5.28735    2.18575 239.99982   2.419   0.0163 *
+# hearing_threshold_centered   0.04648    0.04631 239.99982   1.004   0.3166
+# ioi1:poly(pitch, 2)1        -1.08978    2.18141 239.99982  -0.500   0.6178
+# ioi1:poly(pitch, 2)2         0.55867    2.18141 239.99982   0.256   0.7981
 summary(model)
 
 # EXPERIMENT 2 (UPPER)
@@ -111,21 +111,21 @@ hist(residuals(model))
 # Homoscedasticity: Good
 plot(fitted(model), residuals(model), xlab="Fitted Values", ylab="Residuals")
 # Type III Analysis of Variance Table with Satterthwaite's method
-#                     Sum Sq Mean Sq NumDF  DenDF F value    Pr(>F)
-# ioi                  9.046   9.046     1  24.00  1.3694  0.253410
-# poly(pitch, 2)     168.236  84.118     2 240.53 12.7340 5.538e-06 ***
-# hearing_threshold   58.301  58.301     1 247.61  8.8257  0.003262 **
-# ioi:poly(pitch, 2)   5.676   2.838     2 240.00  0.4297  0.651236
+#                             Sum Sq Mean Sq NumDF DenDF F value    Pr(>F)
+# ioi                          9.046   9.046     1    24  1.3694  0.253407
+# poly(pitch, 2)             168.673  84.337     2   240 12.7671 5.381e-06 ***
+# hearing_threshold_centered  58.632  58.632     1   240  8.8759  0.003186 **
+# ioi:poly(pitch, 2)           5.676   2.838     2   240  0.4297  0.651236
 anova(model)
 # Fixed effects:
 # Estimate Std. Error        df t value Pr(>|t|)
-# (Intercept)          -14.51404    1.06207  24.00234 -13.666 8.09e-13 ***
-# ioi1                   0.53004    0.45295  23.99958   1.170  0.25341
-# poly(pitch, 2)1       11.61516    2.65349 240.49903   4.377 1.79e-05 ***
-# poly(pitch, 2)2        7.52218    2.67711 240.63194   2.810  0.00536 **
-# hearing_threshold      0.09075    0.03055 247.60794   2.971  0.00326 **
-# ioi1:poly(pitch, 2)1  -2.18593    2.57017 239.99810  -0.850  0.39590
-# ioi1:poly(pitch, 2)2   0.94767    2.57017 239.99810   0.369  0.71266
+# (Intercept)                -14.48776    1.06349  24.00014 -13.623 8.67e-13 ***
+# ioi1                         0.53004    0.45294  24.00002   1.170  0.25341
+# poly(pitch, 2)1             11.63759    2.65490 239.99999   4.383 1.75e-05 ***
+# poly(pitch, 2)2              7.54764    2.67891 239.99999   2.817  0.00524 **
+# hearing_threshold_centered   0.09179    0.03081 239.99999   2.979  0.00319 **
+# ioi1:poly(pitch, 2)1        -2.18593    2.57017 239.99999  -0.850  0.39589
+# ioi1:poly(pitch, 2)2         0.94767    2.57017 239.99999   0.369  0.71266
 summary(model)
 
 ###
@@ -145,28 +145,28 @@ hist(residuals(model))
 # Homoscedasticity: Good
 plot(fitted(model), residuals(model), xlab="Fitted Values", ylab="Residuals")
 # Type III Analysis of Variance Table with Satterthwaite's method
-#                       Sum Sq   Mean Sq NumDF  DenDF F value    Pr(>F)
-# ioi                0.0091344 0.0091344     1  39.00 48.5109 2.394e-08 ***
-# poly(pitch, 2)     0.0023602 0.0011801     2 391.55  6.2672  0.002093 **
-# hearing_threshold  0.0004373 0.0004373     1 401.39  2.3225  0.128305
-# ioi:poly(pitch, 2) 0.0000589 0.0000295     2 390.00  0.1565  0.855161
+#                               Sum Sq   Mean Sq NumDF DenDF F value    Pr(>F)
+# ioi                        0.0091344 0.0091344     1    39 48.5109 2.394e-08 ***
+# poly(pitch, 2)             0.0023593 0.0011797     2   390  6.2650  0.002099 **
+# hearing_threshold_centered 0.0004436 0.0004436     1   390  2.3559  0.125620
+# ioi:poly(pitch, 2)         0.0000589 0.0000295     2   390  0.1565  0.855161
 anova(model)
 # Fixed effects:
 # Estimate Std. Error         df t value Pr(>|t|)
-# (Intercept)           9.643e-01  5.402e-03  3.909e+01 178.527  < 2e-16 ***
-# ioi1                  2.127e-02  3.054e-03  3.900e+01   6.965 2.39e-08 ***
-# poly(pitch, 2)1       2.611e-03  1.593e-02  3.931e+02   0.164 0.869937
-# poly(pitch, 2)2       4.854e-02  1.375e-02  3.901e+02   3.529 0.000467 ***
-# hearing_threshold     2.400e-04  1.575e-04  4.014e+02   1.524 0.128305
-# ioi1:poly(pitch, 2)1 -7.094e-03  1.372e-02  3.900e+02  -0.517 0.605448
-# ioi1:poly(pitch, 2)2  2.936e-03  1.372e-02  3.900e+02   0.214 0.830712
+# (Intercept)                 9.646e-01  5.392e-03  3.900e+01 178.912  < 2e-16 ***
+# ioi1                        2.127e-02  3.054e-03  3.900e+01   6.965 2.39e-08 ***
+# poly(pitch, 2)1             2.797e-03  1.597e-02  3.900e+02   0.175  0.86104
+# poly(pitch, 2)2             4.851e-02  1.376e-02  3.900e+02   3.527  0.00047 ***
+# hearing_threshold_centered  2.436e-04  1.587e-04  3.900e+02   1.535  0.12562
+# ioi1:poly(pitch, 2)1       -7.094e-03  1.372e-02  3.900e+02  -0.517  0.60545
+# ioi1:poly(pitch, 2)2        2.936e-03  1.372e-02  3.900e+02   0.214  0.83071
 summary(model)
 
 # EXPERIMENT 2 (LOWER)
 # ioi (***): Tapped faster relative to the 600 ms stimulus than to the 400 ms one
 # pitch (**): Negative linear effect - faster tapping to higher pitches
 # ioi * pitch (n.s.): Negative linear effect was stronger in the 400 ms condition, but not significantly
-# hearing_threshold (**): Faster tapping for pitches the participant was less sensitive to hearing
+# hearing_threshold (*): Faster tapping for pitches the participant was less sensitive to hearing
 model <- lmer(rel_iti ~ 1 + ioi * poly(pitch, 2) + hearing_threshold_centered + (1 + ioi | subject),
               data=subj_cavgs[subj_cavgs$register == 'L',], REML=FALSE)
 # Normality of residuals: Good
@@ -175,21 +175,21 @@ hist(residuals(model))
 # Homoscedasticity: Good
 plot(fitted(model), residuals(model), xlab="Fitted Values", ylab="Residuals")
 # Type III Analysis of Variance Table with Satterthwaite's method
-#                        Sum Sq    Mean Sq NumDF   DenDF F value    Pr(>F)
-# ioi                0.00217894 0.00217894     1  24.001 18.8198 0.0002235 ***
-# poly(pitch, 2)     0.00158278 0.00079139     2 240.607  6.8354 0.0012963 **
-# hearing_threshold  0.00086099 0.00086099     1 247.558  7.4365 0.0068488 **
-# ioi:poly(pitch, 2) 0.00058220 0.00029110     2 239.942  2.5143 0.0830515 .
+#                                Sum Sq    Mean Sq NumDF   DenDF F value    Pr(>F)
+# ioi                        0.00217839 0.00217839     1  23.996 18.8175 0.0002237 ***
+# poly(pitch, 2)             0.00152145 0.00076073     2 240.000  6.5713 0.0016653 **
+# hearing_threshold_centered 0.00074301 0.00074301     1 240.000  6.4183 0.0119328 *
+# ioi:poly(pitch, 2)         0.00058220 0.00029110     2 240.000  2.5146 0.0830246 .
 anova(model)
 # Fixed effects:
 # Estimate Std. Error         df t value Pr(>|t|)
-# (Intercept)           9.630e-01  7.506e-03  2.402e+01 128.294  < 2e-16 ***
-# ioi1                  1.677e-02  3.867e-03  2.400e+01   4.338 0.000224 ***
-# poly(pitch, 2)1      -4.022e-02  1.176e-02  2.413e+02  -3.420 0.000735 ***
-# poly(pitch, 2)2       1.607e-02  1.078e-02  2.400e+02   1.490 0.137467
-# hearing_threshold    -6.177e-04  2.265e-04  2.476e+02  -2.727 0.006849 **
-# ioi1:poly(pitch, 2)1 -2.362e-02  1.076e-02  2.399e+02  -2.195 0.029110 *
-# ioi1:poly(pitch, 2)2  4.929e-03  1.076e-02  2.399e+02   0.458 0.647319
+# (Intercept)                 9.621e-01  7.675e-03  2.400e+01 125.354  < 2e-16 ***
+# ioi1                        1.677e-02  3.867e-03  2.400e+01   4.338 0.000224 ***
+# poly(pitch, 2)1            -3.940e-02  1.177e-02  2.400e+02  -3.346 0.000950 ***
+# poly(pitch, 2)2             1.595e-02  1.078e-02  2.400e+02   1.480 0.140297
+# hearing_threshold_centered -5.787e-04  2.284e-04  2.400e+02  -2.533 0.011933 *
+# ioi1:poly(pitch, 2)1       -2.362e-02  1.076e-02  2.400e+02  -2.195 0.029100 *
+# ioi1:poly(pitch, 2)2        4.929e-03  1.076e-02  2.400e+02   0.458 0.647298
 summary(model)
 
 # EXPERIMENT 2 (UPPER)
@@ -205,21 +205,21 @@ hist(residuals(model))
 # Homoscedasticity: Good
 plot(fitted(model), residuals(model), xlab="Fitted Values", ylab="Residuals")
 # Type III Analysis of Variance Table with Satterthwaite's method
-#                       Sum Sq   Mean Sq NumDF  DenDF F value    Pr(>F)
-# ioi                0.0054398 0.0054398     1  24.00 50.5065 2.401e-07 ***
-# poly(pitch, 2)     0.0013010 0.0006505     2 240.16  6.0397  0.002759 **
-# hearing_threshold  0.0000119 0.0000119     1 242.87  0.1108  0.739475
-# ioi:poly(pitch, 2) 0.0000831 0.0000415     2 239.96  0.3857  0.680363
+#                               Sum Sq   Mean Sq NumDF DenDF F value  Pr(>F)
+# ioi                        0.0054395 0.0054395     1    24 50.5074 2.4e-07 ***
+# poly(pitch, 2)             0.0012646 0.0006323     2   240  5.8713 0.00324 **
+# hearing_threshold_centered 0.0000041 0.0000041     1   240  0.0380 0.84566
+# ioi:poly(pitch, 2)         0.0000831 0.0000415     2   240  0.3858 0.68034
 anova(model)
 # Fixed effects:
 # Estimate Std. Error        df t value Pr(>|t|)
-# (Intercept)          9.668e-01  5.712e-03 2.396e+01 169.240  < 2e-16 ***
-# ioi1                 1.632e-02  2.296e-03 2.400e+01   7.107  2.4e-07 ***
-# poly(pitch, 2)1      3.255e-02  1.072e-02 2.401e+02   3.037  0.00265 **
-# poly(pitch, 2)2      2.054e-02  1.081e-02 2.402e+02   1.899  0.05871 .
-# hearing_threshold    4.129e-05  1.240e-04 2.429e+02   0.333  0.73948
-# ioi1:poly(pitch, 2)1 6.159e-03  1.038e-02 2.400e+02   0.593  0.55343
-# ioi1:poly(pitch, 2)2 6.720e-03  1.038e-02 2.400e+02   0.648  0.51791
+# (Intercept)                9.668e-01  5.724e-03 2.400e+01 168.892  < 2e-16 ***
+# ioi1                       1.632e-02  2.296e-03 2.400e+01   7.107  2.4e-07 ***
+# poly(pitch, 2)1            3.218e-02  1.072e-02 2.400e+02   3.002  0.00296 **
+# poly(pitch, 2)2            2.012e-02  1.082e-02 2.400e+02   1.860  0.06405 .
+# hearing_threshold_centered 2.424e-05  1.244e-04 2.400e+02   0.195  0.84566
+# ioi1:poly(pitch, 2)1       6.159e-03  1.038e-02 2.400e+02   0.593  0.55341
+# ioi1:poly(pitch, 2)2       6.720e-03  1.038e-02 2.400e+02   0.648  0.51789
 summary(model)
 
 ###
@@ -233,20 +233,32 @@ subj_savgs2 <- subj_savgs2 %>% left_join(subj_avg_thresholds, by="subject") %>%
   mutate(hearing_threshold_centered = hearing_threshold - subj_avg_threshold)
 
 model <- lmer(hearing_threshold ~ 1 + poly(pitch, 2) + (1 | subject), data=subj_savgs2, REML=FALSE)
-model <- lmer(perc_async ~ 1 + hearing_threshold + (1 | subject),
+# Fixed effects:
+# Estimate Std. Error       df t value Pr(>|t|)
+# (Intercept)       1.0348     0.4017  86.2044   2.576   0.0117 *
+# poly(pitch, 2)1 -48.0086     5.1726 508.5734  -9.281   <2e-16 ***
+# poly(pitch, 2)2   0.7930     4.4912 437.7938   0.177   0.8599
+summary(model)
+cor.test(subj_savgs2$hearing_threshold_centered, subj_savgs2$pitch)
+
+model <- lmer(perc_async ~ 1 + hearing_threshold_centered + (1 | subject),
               data=subj_savgs2, REML=FALSE)
 # Type III Analysis of Variance Table with Satterthwaite's method
-#                   Sum Sq Mean Sq NumDF  DenDF F value  Pr(>F)
-# hearing_threshold 25.281  25.281     1 446.66  6.3169 0.01231 *
+#                            Sum Sq Mean Sq NumDF DenDF F value   Pr(>F)
+# hearing_threshold_centered 31.051  31.051     1   435  7.7601 0.005575 **
 anova(model)
 
 subj_cavgs2 <- group_by(cdata, subject, pitch) %>%
   summarize(rel_iti=mean(rel_iti), hearing_threshold=mean(hearing_threshold))
-model <- lmer(rel_iti ~ 1 + hearing_threshold + (1 | subject),
+# Center hearing thresholds within-subject
+subj_avg_thresholds <- group_by(subj_cavgs2, subject) %>% summarize(subj_avg_threshold=mean(hearing_threshold))
+subj_cavgs2 <- subj_cavgs2 %>% left_join(subj_avg_thresholds, by="subject") %>%
+  mutate(hearing_threshold_centered = hearing_threshold - subj_avg_threshold)
+model <- lmer(rel_iti ~ 1 + hearing_threshold_centered + (1 | subject),
               data=subj_cavgs2, REML=FALSE)
 # Type III Analysis of Variance Table with Satterthwaite's method
-#                       Sum Sq    Mean Sq NumDF  DenDF F value Pr(>F)
-# hearing_threshold 1.5782e-05 1.5782e-05     1 442.37  0.1862 0.6663
+#                                Sum Sq    Mean Sq NumDF DenDF F value Pr(>F)
+# hearing_threshold_centered 1.9841e-05 1.9841e-05     1   435  0.2341 0.6288
 anova(model)
 
 ###
@@ -254,105 +266,105 @@ anova(model)
 ###
 
 # Experiment 1: Noninteraction between music training and pitch effect for synchronization
-model <- lmer(perc_async ~ 1 + ioi * poly(pitch, 2) + poly(pitch, 2) * highmus + hearing_threshold + (1 + ioi | subject),
+model <- lmer(perc_async ~ 1 + ioi * poly(pitch, 2) + poly(pitch, 2) * highmus + hearing_threshold_centered + (1 + ioi | subject),
               data=subj_savgs[subj_savgs$register == 'B',], REML=FALSE)
 # Type III Analysis of Variance Table with Satterthwaite's method
-#                        Sum Sq Mean Sq NumDF  DenDF F value    Pr(>F)
-# ioi                      1.13   1.132     1  39.00  0.1909    0.6646
-# poly(pitch, 2)         415.82 207.911     2 391.72 35.0701 9.754e-15 ***
-# highmus                 14.08  14.084     1  39.02  2.3757    0.1313
-# hearing_threshold       10.61  10.608     1 401.93  1.7893    0.1818
-# ioi:poly(pitch, 2)      11.91   5.954     2 389.96  1.0044    0.3672
-# poly(pitch, 2):highmus   4.87   2.435     2 390.22  0.4107    0.6635
+#                            Sum Sq Mean Sq NumDF DenDF F value    Pr(>F)
+# ioi                          1.13   1.132     1    39  0.1909    0.6646
+# poly(pitch, 2)             415.70 207.851     2   390 35.0620 9.931e-15 ***
+# highmus                     13.63  13.630     1    39  2.2992    0.1375
+# hearing_threshold_centered  12.87  12.870     1   390  2.1709    0.1414
+# ioi:poly(pitch, 2)          11.91   5.954     2   390  1.0044    0.3672
+# poly(pitch, 2):highmus       5.12   2.559     2   390  0.4317    0.6497
 anova(model)
 
 # Experiment 2: High musicality had more positive quadratic slope in lower reg than low musicality
-model <- lmer(perc_async ~ 1 + ioi * poly(pitch, 2) + poly(pitch, 2) * highmus + hearing_threshold + (1 + ioi | subject),
+model <- lmer(perc_async ~ 1 + ioi * poly(pitch, 2) + poly(pitch, 2) * highmus + hearing_threshold_centered + (1 + ioi | subject),
               data=subj_savgs[subj_savgs$register == 'L',], REML=FALSE)
 # Type III Analysis of Variance Table with Satterthwaite's method
-#                         Sum Sq Mean Sq NumDF  DenDF F value    Pr(>F)
-# ioi                      1.321   1.321     1  24.00  0.2930  0.593297
-# poly(pitch, 2)         177.600  88.800     2 240.59 19.6969 1.197e-08 ***
-# highmus                  1.320   1.320     1  23.81  0.2928  0.593437
-# hearing_threshold        4.826   4.826     1 248.61  1.0705  0.301828
-# ioi:poly(pitch, 2)       1.500   0.750     2 239.81  0.1663  0.846864
-# poly(pitch, 2):highmus  59.639  29.820     2 239.84  6.6144  0.001599 **
+#                             Sum Sq Mean Sq NumDF DenDF F value    Pr(>F)
+# ioi                          1.320   1.320     1    24  0.2930  0.593295
+# poly(pitch, 2)             169.964  84.982     2   240 18.8577 2.474e-08 ***
+# highmus                      1.382   1.382     1    24  0.3068  0.584802
+# hearing_threshold_centered   8.063   8.063     1   240  1.7892  0.182288
+# ioi:poly(pitch, 2)           1.500   0.750     2   240  0.1664  0.846806
+# poly(pitch, 2):highmus      60.503  30.251     2   240  6.7129  0.001456 **
 anova(model)
 # Fixed effects:
 # Estimate Std. Error        df t value Pr(>|t|)
-# (Intercept)              -14.52208    1.41051  23.98916 -10.296 2.79e-10 ***
-# ioi1                      -0.32875    0.60734  24.00002  -0.541 0.593297
-# poly(pitch, 2)1          -13.84271    2.32826 241.33666  -5.946 9.60e-09 ***
-# poly(pitch, 2)2            4.64936    2.13585 239.85209   2.177 0.030469 *
-# highmus1                  -0.66765    1.23377  23.80998  -0.541 0.593437
-# hearing_threshold          0.04635    0.04480 248.61152   1.035 0.301828
-# ioi1:poly(pitch, 2)1      -1.08978    2.12328 239.80615  -0.513 0.608245
-# ioi1:poly(pitch, 2)2       0.55867    2.12328 239.80615   0.263 0.792685
-# poly(pitch, 2)1:highmus1  -1.34291    2.13070 239.80624  -0.630 0.529120
-# poly(pitch, 2)2:highmus1  -7.66016    2.13855 239.87600  -3.582 0.000413 ***
+# (Intercept)                -14.45414    1.39154  24.05982 -10.387 2.27e-10 ***
+# ioi1                        -0.32875    0.60733  24.00013  -0.541 0.593295
+# poly(pitch, 2)1            -13.54607    2.33158 239.99977  -5.810 1.98e-08 ***
+# poly(pitch, 2)2              4.60248    2.13551 239.99977   2.155 0.032140 *
+# highmus1                    -0.67443    1.21770  24.00035  -0.554 0.584802
+# hearing_threshold_centered   0.06051    0.04524 239.99977   1.338 0.182288
+# ioi1:poly(pitch, 2)1        -1.08978    2.12284 239.99977  -0.513 0.608172
+# ioi1:poly(pitch, 2)2         0.55867    2.12284 239.99977   0.263 0.792644
+# poly(pitch, 2)1:highmus1    -1.34081    2.13026 239.99977  -0.629 0.529678
+# poly(pitch, 2)2:highmus1    -7.71805    2.13827 239.99977  -3.609 0.000373 ***
 summary(model)
 
 # Experiment 2: High music training had stronger linear effect in upper reg
-model <- lmer(perc_async ~ 1 + ioi * poly(pitch, 2) + poly(pitch, 2) * highmus + hearing_threshold + (1 + ioi | subject),
+model <- lmer(perc_async ~ 1 + ioi * poly(pitch, 2) + poly(pitch, 2) * highmus + hearing_threshold_centered + (1 + ioi | subject),
               data=subj_savgs[subj_savgs$register == 'U',], REML=FALSE)
 # Type III Analysis of Variance Table with Satterthwaite's method
-#                         Sum Sq Mean Sq NumDF   DenDF F value    Pr(>F)
-# ioi                      8.687   8.687     1  24.000  1.3694  0.253407
-# poly(pitch, 2)         211.692 105.846     2 240.364 16.6852 1.639e-07 ***
-# highmus                  6.216   6.216     1  24.123  0.9798  0.332075
-# hearing_threshold       67.405  67.405     1 246.848 10.6255  0.001272 **
-# ioi:poly(pitch, 2)       5.676   2.838     2 240.000  0.4474  0.639819
-# poly(pitch, 2):highmus  62.946  31.473     2 240.166  4.9613  0.007738 **
+#                             Sum Sq Mean Sq NumDF DenDF F value   Pr(>F)
+# ioi                          8.687   8.687     1    24  1.3694 0.253408
+# poly(pitch, 2)             211.102 105.551     2   240 16.6387 1.71e-07 ***
+# highmus                      4.105   4.105     1    24  0.6471 0.429050
+# hearing_threshold_centered  65.883  65.883     1   240 10.3856 0.001446 **
+# ioi:poly(pitch, 2)           5.676   2.838     2   240  0.4474 0.639819
+# poly(pitch, 2):highmus      62.900  31.450     2   240  4.9577 0.007766 **
 anova(model)
 # Fixed effects:
 # Estimate Std. Error        df t value Pr(>|t|)
-# (Intercept)              -14.22663    1.06628  24.60260 -13.342 9.20e-13 ***
-# ioi1                       0.53004    0.45294  24.00000   1.170  0.25341
-# poly(pitch, 2)1           14.56761    2.76113 240.46220   5.276 2.95e-07 ***
-# poly(pitch, 2)2            7.15997    2.72956 240.30494   2.623  0.00927 **
-# highmus1                  -0.87029    0.87922  24.12337  -0.990  0.33208
-# hearing_threshold          0.10003    0.03069 246.84822   3.260  0.00127 **
-# ioi1:poly(pitch, 2)1      -2.18593    2.51867 239.99968  -0.868  0.38632
-# ioi1:poly(pitch, 2)2       0.94767    2.51867 239.99968   0.376  0.70706
-# poly(pitch, 2)1:highmus1  -8.25610    2.67354 240.01103  -3.088  0.00225 **
-# poly(pitch, 2)2:highmus1   1.76930    2.73302 240.32247   0.647  0.51800
+# (Intercept)                -14.25116    1.07627  24.61280 -13.241 1.08e-12 ***
+# ioi1                         0.53004    0.45294  23.99989   1.170  0.25341
+# poly(pitch, 2)1             14.55899    2.76248 240.00002   5.270 3.03e-07 ***
+# poly(pitch, 2)2              7.15305    2.73044 240.00002   2.620  0.00936 **
+# highmus1                    -0.70981    0.88238  24.00003  -0.804  0.42905
+# hearing_threshold_centered   0.09965    0.03092 240.00002   3.223  0.00145 **
+# ioi1:poly(pitch, 2)1        -2.18593    2.51867 240.00002  -0.868  0.38632
+# ioi1:poly(pitch, 2)2         0.94767    2.51867 240.00002   0.376  0.70706
+# poly(pitch, 2)1:highmus1    -8.25480    2.67357 240.00002  -3.088  0.00226 **
+# poly(pitch, 2)2:highmus1     1.76217    2.73396 240.00002   0.645  0.51983
 summary(model)
 
 # Experiment 1: Noninteraction between musicality and pitch for continuation tapping
-model <- lmer(rel_iti ~ 1 + ioi * poly(pitch, 2) + poly(pitch, 2) * highmus + hearing_threshold + (1 + ioi | subject),
+model <- lmer(rel_iti ~ 1 + ioi * poly(pitch, 2) + poly(pitch, 2) * highmus + hearing_threshold_centered + (1 + ioi | subject),
               data=subj_cavgs[subj_cavgs$register == 'B',], REML=FALSE)
 # Type III Analysis of Variance Table with Satterthwaite's method
-#                           Sum Sq   Mean Sq NumDF  DenDF F value    Pr(>F)
-# ioi                    0.0091298 0.0091298     1  39.00 48.5111 2.394e-08 ***
-# poly(pitch, 2)         0.0023941 0.0011970     2 391.69  6.3605  0.001912 **
-# highmus                0.0001155 0.0001155     1  39.06  0.6138  0.438093
-# hearing_threshold      0.0004281 0.0004281     1 401.50  2.2748  0.132275
-# ioi:poly(pitch, 2)     0.0000589 0.0000295     2 390.00  0.1566  0.855092
-# poly(pitch, 2):highmus 0.0000375 0.0000187     2 390.25  0.0996  0.905265
+#                               Sum Sq   Mean Sq NumDF DenDF F value    Pr(>F)
+# ioi                        0.0091297 0.0091297     1    39 48.5106 2.394e-08 ***
+# poly(pitch, 2)             0.0023939 0.0011970     2   390  6.3600  0.001914 **
+# highmus                    0.0001039 0.0001039     1    39  0.5520  0.461951
+# hearing_threshold_centered 0.0004232 0.0004232     1   390  2.2486  0.134546
+# ioi:poly(pitch, 2)         0.0000589 0.0000295     2   390  0.1566  0.855092
+# poly(pitch, 2):highmus     0.0000375 0.0000187     2   390  0.0995  0.905274
 anova(model)
 
 # Experiment 2: Noninteraction between musicality and pitch in lower reg
-model <- lmer(rel_iti ~ 1 + ioi * poly(pitch, 2) + poly(pitch, 2) * highmus + hearing_threshold + (1 + ioi | subject),
+model <- lmer(rel_iti ~ 1 + ioi * poly(pitch, 2) + poly(pitch, 2) * highmus + hearing_threshold_centered + (1 + ioi | subject),
               data=subj_cavgs[subj_cavgs$register == 'L',], REML=FALSE)
 # Type III Analysis of Variance Table with Satterthwaite's method
-#                            Sum Sq    Mean Sq NumDF   DenDF F value    Pr(>F)
-# ioi                    0.00213861 0.00213861     1  24.000 18.8194 0.0002235 ***
-# poly(pitch, 2)         0.00140031 0.00070016     2 240.601  6.1613 0.0024574 **
-# highmus                0.00000125 0.00000125     1  23.943  0.0110 0.9175094
-# hearing_threshold      0.00078203 0.00078203     1 247.462  6.8817 0.0092490 **
-# ioi:poly(pitch, 2)     0.00058220 0.00029110     2 239.942  2.5616 0.0792874 .
-# poly(pitch, 2):highmus 0.00050910 0.00025455     2 239.971  2.2400 0.1086801
+#                                Sum Sq    Mean Sq NumDF DenDF F value    Pr(>F)
+# ioi                        0.00213834 0.00213834     1    24 18.8194 0.0002235 ***
+# poly(pitch, 2)             0.00134241 0.00067120     2   240  5.9072 0.0031310 **
+# highmus                    0.00000084 0.00000084     1    24  0.0074 0.9321126
+# hearing_threshold_centered 0.00067066 0.00067066     1   240  5.9024 0.0158546 *
+# ioi:poly(pitch, 2)         0.00058220 0.00029110     2   240  2.5620 0.0792623 .
+# poly(pitch, 2):highmus     0.00051366 0.00025683     2   240  2.2604 0.1065293
 anova(model)
 
 # Experiment 2: Noninteraction between musicality and pitch in upper reg
-model <- lmer(rel_iti ~ 1 + ioi * poly(pitch, 2) + poly(pitch, 2) * highmus + hearing_threshold + (1 + ioi | subject),
+model <- lmer(rel_iti ~ 1 + ioi * poly(pitch, 2) + poly(pitch, 2) * highmus + hearing_threshold_centered + (1 + ioi | subject),
               data=subj_cavgs[subj_cavgs$register == 'U',], REML=FALSE)
 # Type III Analysis of Variance Table with Satterthwaite's method
-#                           Sum Sq   Mean Sq NumDF   DenDF F value    Pr(>F)
-# ioi                    0.0053337 0.0053337     1  24.002 50.5094 2.398e-07 ***
-# poly(pitch, 2)         0.0014644 0.0007322     2 240.108  6.9338  0.001181 **
-# highmus                0.0000684 0.0000684     1  24.020  0.6481  0.428676
-# hearing_threshold      0.0000496 0.0000496     1 242.610  0.4693  0.493958
-# ioi:poly(pitch, 2)     0.0000831 0.0000415     2 239.972  0.3934  0.675163
-# poly(pitch, 2):highmus 0.0005148 0.0002574     2 240.034  2.4378  0.089517 .
+#                               Sum Sq   Mean Sq NumDF   DenDF F value    Pr(>F)
+# ioi                        0.0053330 0.0053330     1  24.000 50.5062 2.401e-07 ***
+# poly(pitch, 2)             0.0014357 0.0007178     2 240.000  6.7984  0.001343 **
+# highmus                    0.0000715 0.0000715     1  24.001  0.6776  0.418527
+# hearing_threshold_centered 0.0000338 0.0000338     1 240.000  0.3204  0.571869
+# ioi:poly(pitch, 2)         0.0000831 0.0000415     2 240.000  0.3935  0.675145
+# poly(pitch, 2):highmus     0.0005054 0.0002527     2 240.000  2.3934  0.093494 .
 anova(model)
