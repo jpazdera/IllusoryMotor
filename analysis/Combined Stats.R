@@ -22,6 +22,14 @@ cdata$ioi <- as.factor(cdata$ioi)
 subj_cavgs <- group_by(cdata, subject, register, pitch, ioi) %>%
   summarize(rel_iti=mean(rel_iti), hearing_threshold=mean(hearing_threshold), years_lessons=mean(years_lessons))
 
+# Center hearing thresholds within-subject
+subj_avg_thresholds <- group_by(subj_savgs, subject) %>% summarize(subj_avg_threshold=mean(hearing_threshold))
+subj_savgs <- subj_savgs %>% left_join(subj_avg_thresholds, by="subject") %>%
+  mutate(hearing_threshold_centered = hearing_threshold - subj_avg_threshold)
+subj_avg_thresholds <- group_by(subj_cavgs, subject) %>% summarize(subj_avg_threshold=mean(hearing_threshold))
+subj_cavgs <- subj_cavgs %>% left_join(subj_avg_thresholds, by="subject") %>%
+  mutate(hearing_threshold_centered = hearing_threshold - subj_avg_threshold)
+
 MED_MUS_EXP <- 4.0  # Calculated previously in Python
 subj_savgs['highmus'] <- as.factor(subj_savgs$years_lessons > MED_MUS_EXP)
 subj_cavgs['highmus'] <- as.factor(subj_cavgs$years_lessons > MED_MUS_EXP)
@@ -35,7 +43,7 @@ subj_cavgs['highmus'] <- as.factor(subj_cavgs$years_lessons > MED_MUS_EXP)
 # pitch (***): Positive quadratic effect - middle pitches produced earliest tapping
 # ioi * pitch (n.s.): Pitch had similar effect regardless of tempo
 # hearing_threshold (n.s.): Asynchrony was not correlated with hearing threshold
-model <- lmer(perc_async ~ 1 + ioi * poly(pitch, 2) + hearing_threshold + (1 + ioi | subject),
+model <- lmer(perc_async ~ 1 + ioi * poly(pitch, 2) + hearing_threshold_centered + (1 + ioi | subject),
               data=subj_savgs[subj_savgs$register == 'B',], REML=FALSE)
 # Normality of residuals: Okay, but a little skewed - probably related to people anticipating the tone, which makes the positive tail extend less far
 qqPlot(residuals(model))
@@ -65,7 +73,7 @@ summary(model)
 # pitch (***): Stronger negative linear + weaker positive quadratic effect - higher pitches produce earlier tapping
 # ioi * pitch (n.s.): Pitch had similar effect regardless of tempo
 # hearing_threshold (n.s.): Asynchrony was not correlated with hearing threshold
-model <- lmer(perc_async ~ 1 + ioi * poly(pitch, 2) + hearing_threshold + (1 + ioi | subject),
+model <- lmer(perc_async ~ 1 + ioi * poly(pitch, 2) + hearing_threshold_centered + (1 + ioi | subject),
               data=subj_savgs[subj_savgs$register == 'L',], REML=FALSE)
 # Normality of residuals: Good
 qqPlot(residuals(model))
@@ -95,7 +103,7 @@ summary(model)
 # pitch (***): Stronger positive linear + weaker positive quadratic effect - higher pitches produce later tapping
 # ioi * pitch (n.s.): Pitch has similar effect regardless of tempo
 # hearing_threshold (**): Later tapping for pitches the participant was less sensitive to hearing
-model <- lmer(perc_async ~ 1 + ioi * poly(pitch, 2) + hearing_threshold + (1 + ioi | subject),
+model <- lmer(perc_async ~ 1 + ioi * poly(pitch, 2) + hearing_threshold_centered + (1 + ioi | subject),
               data=subj_savgs[subj_savgs$register == 'U',], REML=FALSE)
 # Normality of residuals: Okay - kurtosis is a little high, not skewed
 qqPlot(residuals(model))
@@ -129,7 +137,7 @@ summary(model)
 # pitch (**): Positive quadratic effect - fastest tapping to middle pitches
 # ioi * pitch (n.s.): Pitch has a similar effect regardless of tempo
 # hearing_threshold (n.s.): Tapping rate was not correlated with hearing threshold
-model <- lmer(rel_iti ~ 1 + ioi * poly(pitch, 2) + hearing_threshold + (1 + ioi | subject),
+model <- lmer(rel_iti ~ 1 + ioi * poly(pitch, 2) + hearing_threshold_centered + (1 + ioi | subject),
               data=subj_cavgs[subj_cavgs$register == 'B',], REML=FALSE)
 # Normality of residuals: High kurtosis, not skewed
 qqPlot(residuals(model))
@@ -159,7 +167,7 @@ summary(model)
 # pitch (**): Negative linear effect - faster tapping to higher pitches
 # ioi * pitch (n.s.): Negative linear effect was stronger in the 400 ms condition, but not significantly
 # hearing_threshold (**): Faster tapping for pitches the participant was less sensitive to hearing
-model <- lmer(rel_iti ~ 1 + ioi * poly(pitch, 2) + hearing_threshold + (1 + ioi | subject),
+model <- lmer(rel_iti ~ 1 + ioi * poly(pitch, 2) + hearing_threshold_centered + (1 + ioi | subject),
               data=subj_cavgs[subj_cavgs$register == 'L',], REML=FALSE)
 # Normality of residuals: Good
 qqPlot(residuals(model))
@@ -189,7 +197,7 @@ summary(model)
 # pitch (**): Positive linear effect - slower tapping to higher pitches
 # ioi * pitch (n.s.): Pitch has a similar effect regardless of tempo
 # hearing_threshold (n.s.): Tapping rate was not correlated with hearing threshold
-model <- lmer(rel_iti ~ 1 + ioi * poly(pitch, 2) + hearing_threshold + (1 + ioi | subject),
+model <- lmer(rel_iti ~ 1 + ioi * poly(pitch, 2) + hearing_threshold_centered + (1 + ioi | subject),
               data=subj_cavgs[subj_cavgs$register == 'U',], REML=FALSE)
 # Normality of residuals: Okay - maybe slightly high kurtosis
 qqPlot(residuals(model))
@@ -219,6 +227,12 @@ summary(model)
 ###
 subj_savgs2 <- group_by(sdata, subject, pitch) %>%
   summarize(perc_async=mean(perc_async), hearing_threshold=mean(hearing_threshold))
+# Center hearing thresholds within-subject
+subj_avg_thresholds <- group_by(subj_savgs2, subject) %>% summarize(subj_avg_threshold=mean(hearing_threshold))
+subj_savgs2 <- subj_savgs2 %>% left_join(subj_avg_thresholds, by="subject") %>%
+  mutate(hearing_threshold_centered = hearing_threshold - subj_avg_threshold)
+
+model <- lmer(hearing_threshold ~ 1 + poly(pitch, 2) + (1 | subject), data=subj_savgs2, REML=FALSE)
 model <- lmer(perc_async ~ 1 + hearing_threshold + (1 | subject),
               data=subj_savgs2, REML=FALSE)
 # Type III Analysis of Variance Table with Satterthwaite's method
