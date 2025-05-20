@@ -8,14 +8,14 @@ The open-access published manuscript can be found at: https://doi.org/10.1038/s4
 
 Supplementary files such as conference presentation slides can be found on the Open Science Framework at: https://osf.io/7bptg/
 
-Contents
-E1/ contains all stimuli and code for running Experiment 1, as well as the raw data from the experiment.
+### Contents
+**E1/** contains all stimuli and code for running Experiment 1, as well as the raw data from the experiment.
 
-E2/ contains all stimuli and data for running Experiment 2, as well as the raw data from the experiment.
+**E2/** contains all stimuli and data for running Experiment 2, as well as the raw data from the experiment.
 
-analysis/ contains all code used for data preprocessing, analysis, and visualization, inclduing the code for generating all figures in the manuscript.
+**analysis/** contains all code used for data preprocessing, analysis, and visualization, inclduing the code for generating all figures in the manuscript.
 
-processed_data/ contains preprocessed versions of our data, as well as data on each participant's level of musical training.
+**processed_data/** contains preprocessed versions of our data, as well as data on each participant's level of musical training.
 
 For detailed documentation, see the README files located within each subdirectory.
 
