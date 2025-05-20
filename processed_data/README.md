@@ -51,7 +51,7 @@ Contains most of the same fields as musicianship.csv and processed_taps.csv. The
 - **ms_async:** Asynchrony of the tap, expressed as an absolute number of milliseconds before or after the target tone. Negative numbers indicate the tap was before the target tone, positive numbers indicate the tap was after the target tone.
 
 ## Codebook for Stage-2 Processed Continuation Tapping Data (cont_data.csv)
-Contains the same fields as musicianship.csv and processed_taps.csv combined.
+Contains most of the same fields as musicianship.csv and processed_taps.csv combined.
 
 
 
