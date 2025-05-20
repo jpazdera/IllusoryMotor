@@ -48,7 +48,7 @@ def read_timestamp(serial, nbytes=4, byteorder='little'):
 
 # Set constants
 experiment_name = 'ITM'  # Experiment name
-version_num = '1.1'  # Experiment version number (see above)
+version_num = '1.15'  # Experiment version number (see above)
 serial_port = 'COM6'  # 'COM6' on lab Windows, '/dev/cu.usbmodemFA141' on lab iMac
 frame_rate = 60  # Set monitor frame rate
 score_duration = 2  # Seconds that post-trial score remains onscreen
